@@ -2,6 +2,7 @@
   "name": "swipe-list-sdk",
   "version": "0.1.4",
   "description": "Shared SwipeList React SDK",
+  "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -16,7 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c rollup.config.mjs"
   },
   "keywords": [
     "react",
@@ -41,6 +42,5 @@
     "rollup": "^4.44.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.8.3"
-  },
-  "type": "commonjs"
+  }
 }

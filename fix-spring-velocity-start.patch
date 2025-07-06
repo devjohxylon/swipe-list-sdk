@@ -1,0 +1,39 @@
+From 0000000 Fix spring casts, velocity destructuring, and api.start signature
+---
+ src/index.tsx | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/src/index.tsx b/src/index.tsx
+index abcdef0..1234567 100644
+--- a/src/index.tsx
++++ b/src/index.tsx
+@@ -23,8 +23,10 @@ export function SwipeList({
+-  const [springs, api] = useSpring(() => ({
+-    x: 0 as SpringValue<number>,
+-    rot: 0 as SpringValue<number>,
++  const [springs, api] = useSpring(() => ({
++    x: 0 as unknown as SpringValue<number>,
++    rot: 0 as unknown as SpringValue<number>,
+     config: { tension: 400, friction: 35 },
+   }));
+
+@@ -33,7 +35,7 @@ export function SwipeList({
+-    ({ down, movement: [mx], velocity }) => {
++    ({ down, movement: [mx], velocity: [vx] }) => {
+       if (down) {
+         api.start({ x: mx, rot: mx / 80, immediate: true });
+       } else {
+-        const trigger = Math.abs(mx) > cardSize.width / 2 || velocity > 0.5;
++        const trigger = Math.abs(mx) > cardSize.width / 2 || vx > 0.5;
+         const dir = mx > 0 ? 1 : -1;
+         if (trigger) {
+           const flyX = dir * (cardSize.width + window.innerWidth);
+@@ -41,7 +43,8 @@ export function SwipeList({
+-          api.start({ x: flyX, rot: dir * 20 }, {
+-            onRest: () => {
++          api.start(
++            { x: flyX, rot: dir * 20 },
++            { onRest: () => {
+               const item = deck[index];
+               dir > 0 ? onAdd(item) : onDismiss(item);
+               setIndex(i => i + 1);
