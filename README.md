@@ -5,19 +5,6 @@ Bring addictive Tinder-style discovery to any app—web or mobile—in minutes.
 
 ---
 
-## 📂 Repository Structure
-
-swipe-list-sdk/
-├── dist/ # Built bundles (CJS + ESM + types)
-├── src/
-│ └── index.tsx # Main SwipeList component
-├── rollup.config.mjs # Bundler config
-├── tsconfig.json # TypeScript config
-├── package.json # Package metadata & scripts
-└── README.md # You are here!
-
----
-
 ## 🔑 Key Features
 
 - **Simple API** — One component, two callbacks: `onAdd` and `onDismiss`  
